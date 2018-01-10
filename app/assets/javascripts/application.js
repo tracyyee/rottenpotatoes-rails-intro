@@ -14,3 +14,14 @@
 //= require jquery_ujs
 = require turbolinks
 //= require_tree .
+
+class Application(tornado.web.Application):
+        def __init__(self):
+                handlers = [
+                        (r"/main", mainHandler),
+                        (r"/sentPolygon", formHandler),
+                        (r'/JS/(.*)', tornado.web.StaticFileHandler, {'path': 'JS/'}),
+                        (r'/Libs/jquery/(.*)', tornado.web.StaticFileHandler, {'path': 'Libs/jquery/'}),
+                        (r'/Libs/jquery/css/(.*)', tornado.web.StaticFileHandler, {'path': 'Libs/jquery/css/'}),
+                        (r'/(.*)', tornado.web.StaticFileHandler, {'path': '/'}),
+            ]
