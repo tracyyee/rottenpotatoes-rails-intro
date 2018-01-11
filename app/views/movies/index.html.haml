@@ -7,7 +7,7 @@
   Include:
   - @all_ratings.each do |rating|
     = rating
-    = check_box_tag "ratings[#{rating}]", :id => "ratings_#{rating}" # each checkbox has an HTML element id of ratings_#{rating}, where the interpolated rating is the rating itself, such as ratings_PG-13, ratings_G, and so on.
+    = check_box_tag "ratings[#{rating}]", rating, @selected_ratings.include?(rating) # each checkbox has an HTML element id of ratings_#{rating}, where the interpolated rating is the rating itself, such as ratings_PG-13, ratings_G, and so on. # <input type="checkbox" name="ratings[]" value="PG" checked="checked" />
   = submit_tag 'Refresh', :id => "ratings_submit" # form submit button (for filtering by ratings), HTML element id = ratings_submit
 
 %table#movies
