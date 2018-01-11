@@ -1,6 +1,15 @@
 -#  This file is app/views/movies/index.html.haml
 %h1 All Movies
 
+// generates the checkboxes form
+// the variable @all_ratings is an enumerable collection of all possible values of a movie rating, such as ['G','PG','PG-13','R']
+= form_tag movies_path, :id => "ratings_form",:method => :get do # form tag, id = ratings_form
+  Include:
+  - @all_ratings.each do |rating|
+    = rating
+    = check_box_tag "ratings[#{rating}]", 1, params[:"#{rating}"] # each checkbox has an HTML element id of ratings_#{rating}, where the interpolated rating is the rating itself, such as ratings_PG-13, ratings_G, and so on.
+  = submit_tag 'Refresh', :id => "ratings_submit" # form submit button (for filtering by ratings), HTML element id = ratings_submit
+
 %table#movies
   %thead
     %tr
